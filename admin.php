@@ -26,22 +26,52 @@ function tableExists(PDO $pdo, $tableName) {
 }
 
 function showTable(PDO $pdo) {
-    $stmt = $pdo->query('SELECT * FROM Applicants');
+    $stmt = $pdo->query('SELECT * FROM Users');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     print_r($result);
 }
 
 function createTable(PDO $pdo) {
     // sql to create table
-    $sql = "CREATE TABLE Applicants (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    email VARCHAR(80),
-    telephone VARCHAR(30),
-    comments VARCHAR(1000),
-    reg_date TIMESTAMP
-    )";
+    $sql = "CREATE TABLE Users (
+        user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        email VARCHAR(80) NOT NULL,
+        password CHAR(41) NOT NULL
+        firstname VARCHAR(25) NOT NULL,
+        lastname VARCHAR(25) NOT NULL,
+        telephone VARCHAR(30) NOT NULL,
+        address VARCHAR(80) NOT NULL,
+        city VARCHAR(30) NOT NULL,
+        postcode VARCHAR(7) NOT NULL
+    );";
+    $sql.= "CREATE TABLE PreviousEmployers (
+        previousemployer_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        name VARCHAR(30),
+        position VARCHAR(80),
+        wage DECIMAL(13, 2)
+    );";
+    $sql.= "CREATE TABLE Listings (
+        listing_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        fk_application int,
+        FOREIGN KEY (fk_application) REFERENCES Applications(application_id),
+        title VARCHAR(80),
+        description VARCHAR(1000)
+        date DATE,
+        expiry TIME
+    );";
+    $sql.= "CREATE TABLE Applications (
+        application_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        fk_user int,
+        FOREIGN KEY (fk_user) REFERENCES Users(user_id),
+        fk_previousepmloyer int,
+        FOREIGN KEY (fk_previousepmloyer) REFERENCES PreviousEmployers(previousemployer_id),
+        comments VARCHAR(1000) NOT NULL,
+        time TIME,
+        iscitizen BOOLEAN,
+        isfelon BOOLEAN,
+        feloncomment VARCHAR(500),
+        desiredwage DECIMAL(13, 2)
+    );";
 
     // use exec() because no results are returned
     $pdo->exec($sql);
@@ -53,7 +83,7 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    tableExists($conn, "Applicants");
+    tableExists($conn, "Users");
     $conn = null;
     }
 catch(PDOException $e)
