@@ -36,7 +36,7 @@ function createTable(PDO $pdo) {
     $sql = "CREATE TABLE Users (
         user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         email VARCHAR(80) NOT NULL,
-        password CHAR(41) NOT NULL
+        password CHAR(41) NOT NULL,
         firstname VARCHAR(25) NOT NULL,
         lastname VARCHAR(25) NOT NULL,
         telephone VARCHAR(30) NOT NULL,
@@ -55,9 +55,9 @@ function createTable(PDO $pdo) {
         fk_application int,
         FOREIGN KEY (fk_application) REFERENCES Applications(application_id),
         title VARCHAR(80),
-        description VARCHAR(1000)
+        description VARCHAR(1000),
         date DATE,
-        expiry TIME
+        expiry DATETIME
     );";
     $sql.= "CREATE TABLE Applications (
         application_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -66,7 +66,7 @@ function createTable(PDO $pdo) {
         fk_previousepmloyer int,
         FOREIGN KEY (fk_previousepmloyer) REFERENCES PreviousEmployers(previousemployer_id),
         comments VARCHAR(1000) NOT NULL,
-        time TIME,
+        time DATETIME,
         iscitizen BOOLEAN,
         isfelon BOOLEAN,
         feloncomment VARCHAR(500),
