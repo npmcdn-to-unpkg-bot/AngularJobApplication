@@ -1,14 +1,10 @@
-export class Hero {
-
-  constructor(
-    public id: number,
-    public name: string,
-    public power: string,
-    public alterEgo?: string
-  ) {  }
-
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
 }
 
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved.
