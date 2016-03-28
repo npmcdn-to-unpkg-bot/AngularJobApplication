@@ -1,9 +1,9 @@
 import {Component}         from 'angular2/core';
-import {HeroFormComponent} from './hero-form.component'
+import {ApplicantFormComponent} from './applicant-form.component'
 
 @Component({
   selector: 'my-app',
-  template: '<hero-form></hero-form>',
-  directives: [HeroFormComponent]
+  template: '<applicant-form></applicant-form>',
+  directives: [ApplicantFormComponent]
 })
 export class AppComponent { }
