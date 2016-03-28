@@ -1,0 +1,132 @@
+<div class="container">
+  <div  [hidden]="submitted">
+    <h1>Job Application Form</h1>
+    <form *ngIf="active" (ngSubmit)="onSubmit()" #applicantForm="ngForm">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.firstname"
+            ngControl="firstname"  #firstname="ngForm" >
+        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+          First Name is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.lastname"
+            ngControl="lastname"  #lastname="ngForm" >
+        <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+          Last Name is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.email"
+            ngControl="email"  #email="ngForm" >
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+          Email is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" required
+          [(ngModel)]="model.password"
+            ngControl="password"  #password="ngForm" >
+        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="telephone">Telephone</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.telephone"
+            ngControl="telephone"  #telephone="ngForm" >
+        <div [hidden]="telephone.valid || telephone.pristine" class="alert alert-danger">
+          Telephone is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.address"
+            ngControl="address"  #address="ngForm" >
+        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+          Address is required
+        </div>
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.city"
+            ngControl="city"  #city="ngForm" >
+        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+          City is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="zipcode">Zip Code</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="model.zipcode"
+            ngControl="zipcode"  #zipcode="ngForm" >
+        <div [hidden]="zipcode.valid || zipcode.pristine" class="alert alert-danger">
+          Zip Code is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-default" [disabled]="!applicantForm.form.valid">Submit</button>
+
+      <button type="button" class="btn btn-default" (click)="newApplicant()">Clear</button>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">First Name</div>
+      <div class="col-xs-9  pull-left">{{ model.firstname }}</div>
+    </div>
+        <div class="row">
+      <div class="col-xs-3">Last Name</div>
+      <div class="col-xs-9  pull-left">{{ model.lastname }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Email</div>
+      <div class="col-xs-9  pull-left">{{ model.email }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Password</div>
+      <div class="col-xs-9  pull-left">Hidden</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Telephone</div>
+      <div class="col-xs-9  pull-left">{{ model.telephone }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Address</div>
+      <div class="col-xs-9  pull-left">{{ model.address }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">City</div>
+      <div class="col-xs-9  pull-left">{{ model.city }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Zip Code</div>
+      <div class="col-xs-9  pull-left">{{ model.zipcode }}</div>
+    </div>
+
+    <br>
+    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+  </div>
+</div>
+<hr />
+<a href="admin.php">Create MySQL Table page</a>
