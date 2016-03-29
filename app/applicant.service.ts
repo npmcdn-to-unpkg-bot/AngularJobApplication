@@ -3,6 +3,7 @@ import {Http, Response} from 'angular2/http';
 import {Headers, RequestOptions} from 'angular2/http';
 import {Applicant}           from './applicant';
 import {Observable}     from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ApplicantService {
@@ -21,7 +22,7 @@ export class ApplicantService {
                     .catch(this.handleError);
   }*/
 
-  addApplicant (name: Applicant) : Observable<Applicant>  {
+  addApplicant (name: string) : Observable<Applicant>  {
 
     let body = JSON.stringify({ name });
     let headers = new Headers({ 'Content-Type': 'application/json' });

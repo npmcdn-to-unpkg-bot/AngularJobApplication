@@ -18,7 +18,7 @@ export class ApplicantFormComponent implements OnInit {
   submitted = false;
 
   onSubmit() { this.submitted = true;
-               this._applicantService.addApplicant(this.model);
+               this._applicantService.addApplicant("test");
              }
 
   ngOnInit() {}
