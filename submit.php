@@ -23,6 +23,10 @@ $message.= "Zip Code: ".$postcode."\n";
 
 mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 
+echo json_encode($to);
+echo json_encode($subject);
+echo json_encode($message);
+
 /*
 $servername = "localhost";
 $username = "rhine_Careers";
