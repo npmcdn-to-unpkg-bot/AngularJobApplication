@@ -9,6 +9,9 @@ if (!empty($_POST)) {
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        
         $stmt = $conn->prepare("INSERT INTO Users (email, password, firstname, lastname, telephone, address, city, postcode) VALUES (:email, :password, :firstname, :lastname, :telephone, :address, :city, :postcode)");
         $stmt->bindParam(':email', $_POST['email']);
         $stmt->bindParam(':password', $_POST['email']);
@@ -19,13 +22,14 @@ if (!empty($_POST)) {
         $stmt->bindParam(':city', $_POST['city']);
         $stmt->bindParam(':postcode', $_POST['postcode']);
         $stmt->execute();
-        echo "Submitted successfully";  
-
         $conn = null;
+
+        echo json_encode("Submitted successfully");  
+        
         }
     catch(PDOException $e)
         {
-        echo "Connection failed: " . $e->getMessage();
+        echo json_encode("Connection failed: " . $e->getMessage());
         }
 }
 

@@ -28,7 +28,8 @@ function tableExists(PDO $pdo, $tableName) {
 function showTable(PDO $pdo) {
     $stmt = $pdo->query('SELECT * FROM Users');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($result);
+    header('Content-Type: application/json');
+    echo json_encode($result);
 }
 
 function createTable(PDO $pdo) {
