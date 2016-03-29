@@ -25,12 +25,10 @@ export class ApplicantFormComponent implements OnInit {
                   applicant  => this.model,
                        error =>  this.errorMessage = <any>error 
                );
+               console.log(this.errorMessage);
              }
 
   ngOnInit() {}
-
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
 
   // Reset the form with a new applicant AND restore 'pristine' class state
   // by toggling 'active' flag which causes the form

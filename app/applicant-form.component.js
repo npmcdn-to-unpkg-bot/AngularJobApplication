@@ -43,14 +43,9 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                     this.submitted = true;
                     this._applicantService.addApplicant(this.model.firstname, this.model.lastname, this.model.email, this.model.password, this.model.telephone, this.model.address, this.model.city, this.model.zipcode)
                         .subscribe(function (applicant) { return _this.model; }, function (error) { return _this.errorMessage = error; });
+                    console.log(this.errorMessage);
                 };
                 ApplicantFormComponent.prototype.ngOnInit = function () { };
-                Object.defineProperty(ApplicantFormComponent.prototype, "diagnostic", {
-                    // TODO: Remove this when we're done
-                    get: function () { return JSON.stringify(this.model); },
-                    enumerable: true,
-                    configurable: true
-                });
                 ApplicantFormComponent.prototype.newApplicant = function () {
                     var _this = this;
                     this.model = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
