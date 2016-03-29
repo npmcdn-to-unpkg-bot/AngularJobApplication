@@ -20,7 +20,7 @@ function tableExists(PDO $pdo, $tableName) {
         }
     } else {
         //some PDO error occurred
-        echo("Could not check if table exists, Error: ".var_export($pdo->errorInfo(), true));
+        echo json_encode("Could not check if table exists, Error: ".var_export($pdo->errorInfo(), true));
         return false;
     }
 }
@@ -89,7 +89,8 @@ try {
     }
 catch(PDOException $e)
     {
-    echo "Connection failed: " . $e->getMessage();
+    header('Content-Type: application/json');
+    echo json_encode("Connection failed: " . $e->getMessage());
     }
 
 
