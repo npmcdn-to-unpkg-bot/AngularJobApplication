@@ -1,21 +1,25 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import { Applicant }    from './applicant';
+import { ApplicantService } from './applicant.service'
 
 @Component({
   selector: 'applicant-form',
   templateUrl: 'app/applicant-form.component.html'
+  
 })
-export class ApplicantFormComponent {
-
-  powers = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
+export class ApplicantFormComponent implements OnInit {
+  constructor (private _applicantService: ApplicantService) {}
 
   model = new Applicant(1, "", "", "", "", "", "", "", "");
 
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() { this.submitted = true;
+               this._applicantService.addApplicant(this.model);
+             }
+
+  ngOnInit() {}
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }

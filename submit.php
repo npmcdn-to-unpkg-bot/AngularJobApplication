@@ -24,12 +24,12 @@ if (!empty($_POST)) {
         $stmt->execute();
         $conn = null;
 
-        echo json_encode("Submitted successfully");  
+        echo "Submitted successfully";  
         
         }
     catch(PDOException $e)
         {
-        echo json_encode("Connection failed: " . $e->getMessage());
+        echo "Connection failed: " . $e->getMessage();
         }
 }
 
