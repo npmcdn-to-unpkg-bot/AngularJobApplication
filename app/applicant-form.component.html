@@ -128,5 +128,8 @@
     <button class="btn btn-default" (click)="submitted=false">Edit</button>
   </div>
 </div>
+
+  <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
 <hr />
 <a href="create.php">Create MySQL Table page</a>

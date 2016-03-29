@@ -1,4 +1,4 @@
-System.register(['angular2/core', './applicant'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './applicant', './applicant.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,26 @@ System.register(['angular2/core', './applicant'], function(exports_1, context_1)
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, applicant_1;
+    var core_1, http_1, applicant_1, applicant_service_1;
     var ApplicantFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (applicant_1_1) {
                 applicant_1 = applicant_1_1;
+            },
+            function (applicant_service_1_1) {
+                applicant_service_1 = applicant_service_1_1;
             }],
         execute: function() {
             ApplicantFormComponent = (function () {
-                function ApplicantFormComponent() {
-                    this.powers = ['Really Smart', 'Super Flexible',
-                        'Super Hot', 'Weather Changer'];
+                function ApplicantFormComponent(_applicantService) {
+                    this._applicantService = _applicantService;
                     this.model = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
                     this.submitted = false;
                     // Reset the form with a new applicant AND restore 'pristine' class state
@@ -33,7 +38,13 @@ System.register(['angular2/core', './applicant'], function(exports_1, context_1)
                     // TODO: Workaround until NgForm has a reset method (#6822)
                     this.active = true;
                 }
-                ApplicantFormComponent.prototype.onSubmit = function () { this.submitted = true; };
+                ApplicantFormComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this.submitted = true;
+                    this._applicantService.addApplicant("test")
+                        .subscribe(function (applicant) { return _this.model; }, function (error) { return _this.errorMessage = error; });
+                };
+                ApplicantFormComponent.prototype.ngOnInit = function () { };
                 Object.defineProperty(ApplicantFormComponent.prototype, "diagnostic", {
                     // TODO: Remove this when we're done
                     get: function () { return JSON.stringify(this.model); },
@@ -49,9 +60,11 @@ System.register(['angular2/core', './applicant'], function(exports_1, context_1)
                 ApplicantFormComponent = __decorate([
                     core_1.Component({
                         selector: 'applicant-form',
-                        templateUrl: 'app/applicant-form.component.html'
+                        templateUrl: 'app/applicant-form.component.html',
+                        providers: [http_1.HTTP_PROVIDERS,
+                            applicant_service_1.ApplicantService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [applicant_service_1.ApplicantService])
                 ], ApplicantFormComponent);
                 return ApplicantFormComponent;
             }());
@@ -59,4 +72,4 @@ System.register(['angular2/core', './applicant'], function(exports_1, context_1)
         }
     }
 });
-//# sourceMappingURL=Applicant-form.component.js.map
+//# sourceMappingURL=applicant-form.component.js.map

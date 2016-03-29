@@ -15,10 +15,16 @@ export class ApplicantFormComponent implements OnInit {
 
   model = new Applicant(1, "", "", "", "", "", "", "", "");
 
+  errorMessage: string;
+
   submitted = false;
 
   onSubmit() { this.submitted = true;
-               this._applicantService.addApplicant("test");
+               this._applicantService.addApplicant("test")
+               .subscribe(
+                  applicant  => this.model,
+                       error =>  this.errorMessage = <any>error 
+               );
              }
 
   ngOnInit() {}
