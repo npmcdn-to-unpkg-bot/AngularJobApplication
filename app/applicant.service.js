@@ -40,10 +40,12 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                                   .do(data => console.log(data)) // eyeball results in the console
                                   .catch(this.handleError);
                 }*/
-                ApplicantService.prototype.addApplicant = function (name) {
-                    var body = JSON.stringify({ name: name });
+                ApplicantService.prototype.addApplicant = function (firstname, lastname, email, password, telephone, address, city, zipcode) {
+                    var body = JSON.stringify({ firstname: firstname }) + JSON.stringify({ lastname: lastname }) + JSON.stringify({ email: email }) + JSON.stringify({ password: password }) + JSON.stringify({ telephone: telephone }) + JSON.stringify({ address: address }) + JSON.stringify({ city: city }) + JSON.stringify({ zipcode: zipcode });
+                    body;
                     var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_2.RequestOptions({ headers: headers });
+                    console.log(body);
                     return this.http.post(this._applicantsUrl, body, options)
                         .map(function (res) { return res.json().data; })
                         .catch(this.handleError);

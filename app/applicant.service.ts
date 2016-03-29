@@ -22,11 +22,17 @@ export class ApplicantService {
                     .catch(this.handleError);
   }*/
 
-  addApplicant (name: string) : Observable<Applicant>  {
 
-    let body = JSON.stringify({ name });
+
+
+  addApplicant (firstname: string, lastname: string, email: string, password: string, telephone: string, address: string, city: string, zipcode: string) : Observable<Applicant>  {
+
+    let body = JSON.stringify({ firstname }) + JSON.stringify({ lastname }) + JSON.stringify({ email }) + JSON.stringify({ password }) + JSON.stringify({ telephone }) + JSON.stringify({ address }) + JSON.stringify({ city }) + JSON.stringify({ zipcode });
+    body
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    
+    console.log(body);
 
     return this.http.post(this._applicantsUrl, body, options)
                     .map(res =>  <Applicant> res.json().data)
