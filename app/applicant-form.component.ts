@@ -20,7 +20,7 @@ export class ApplicantFormComponent implements OnInit {
   submitted = false;
 
   onSubmit() { this.submitted = true;
-               this._applicantService.addApplicant(this.model.firstname, this.model.lastname)
+               this._applicantService.addApplicant(this.model.firstname, this.model.lastname, this.model.email, this.model.password, this.model.telephone, this.model.address, this.model.city, this.model.zipcode)
                .subscribe(
                   applicant  => this.model,
                        error =>  this.errorMessage = <any>error 

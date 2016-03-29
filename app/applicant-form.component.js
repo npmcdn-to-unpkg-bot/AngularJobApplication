@@ -41,7 +41,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                 ApplicantFormComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._applicantService.addApplicant(this.model.firstname, this.model.lastname)
+                    this._applicantService.addApplicant(this.model.firstname, this.model.lastname, this.model.email, this.model.password, this.model.telephone, this.model.address, this.model.city, this.model.zipcode)
                         .subscribe(function (applicant) { return _this.model; }, function (error) { return _this.errorMessage = error; });
                 };
                 ApplicantFormComponent.prototype.ngOnInit = function () { };
