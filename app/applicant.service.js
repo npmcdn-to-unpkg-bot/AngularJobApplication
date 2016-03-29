@@ -32,7 +32,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                     /*
                     private _applicantsUrl = 'app/applicants.json'; // URL to JSON file
                     */
-                    this._applicantsUrl = '../submit.php'; // URL to web api
+                    this._applicantsUrl = 'submit.php'; // URL to web api
                 }
                 /*getApplicantss () {
                   return this.http.get(this._applicantsUrl)

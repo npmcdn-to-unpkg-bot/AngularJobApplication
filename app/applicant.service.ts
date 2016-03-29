@@ -13,7 +13,7 @@ export class ApplicantService {
   private _applicantsUrl = 'app/applicants.json'; // URL to JSON file
   */
 
-  private _applicantsUrl = '../submit.php';  // URL to web api
+  private _applicantsUrl = 'submit.php';  // URL to web api
 
   /*getApplicantss () {
     return this.http.get(this._applicantsUrl)
