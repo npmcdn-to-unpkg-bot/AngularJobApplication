@@ -1,10 +1,34 @@
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
+$_POST = json_decode(file_get_contents('php://input'), true);
+
+$email = $_POST['email'];
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$telephone = $_POST['telephone'];
+$address = $_POST['address'];
+$city = $_POST['city'];
+$postcode = $_POST['postcode'];
+
+$to = "eingland@uwm.edu";
+$subject = "Wooo Email!";
+$message = "Email: ".$email."\n";
+$message.= "First Name: ".$firstname."\n";
+$message.= "Last Name: ".$lastname."\n";
+$message.= "Telephone: ".$telephone."\n";
+$message.= "Address: ".$address."\n";
+$message.= "City: ".$city."\n";
+$message.= "Zip Code: ".$postcode."\n";
+
+mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
+
+/*
 $servername = "localhost";
 $username = "rhine_Careers";
 $password = "ZOnprN1uBP87BWMYUUp4!";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
-$_POST = json_decode(file_get_contents('php://input'), true);
+
 
 if (!empty($_POST)) {
     try {
@@ -36,6 +60,6 @@ if (!empty($_POST)) {
 } else {
     header('Content-Type: application/json');
     echo json_encode("Error: No POST data");
-}
+}*/
 
 ?>
