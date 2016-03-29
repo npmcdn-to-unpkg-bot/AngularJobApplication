@@ -9,7 +9,7 @@ export class ApplicantService {
   constructor (private http: Http) {}
 
   /*
-  private _heroesUrl = 'app/heroes.json'; // URL to JSON file
+  private _applicantsUrl = 'app/applicants.json'; // URL to JSON file
   */
 
   private _applicantsUrl = 'app/applicants';  // URL to web api
