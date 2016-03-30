@@ -1,4 +1,9 @@
 <?php
+
+header('Content-type: application/json');
+ 
+$errors = '';
+
 $servername = "localhost";
 $username = "rhine_Careers";
 $password = "ZOnprN1uBP87BWMYUUp4!";
@@ -12,7 +17,6 @@ function tableExists(PDO $pdo, $tableName) {
     if ($sqlResult) {
         $row = $mrStmt->fetch(PDO::FETCH_NUM);
         if ($row[0]) {
-            showTable($pdo);
             return true;
         } else {
             createTable($pdo);
@@ -20,15 +24,15 @@ function tableExists(PDO $pdo, $tableName) {
         }
     } else {
         //some PDO error occurred
-        echo("Could not check if table exists, Error: ".var_export($pdo->errorInfo(), true));
+        echo json_encode("Could not check if table exists, Error: ".var_export($pdo->errorInfo(), true));
         return false;
     }
 }
 
-function showTable(PDO $pdo) {
+function getTable(PDO $pdo) {
     $stmt = $pdo->query('SELECT * FROM Users');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($result);
+    echo json_encode($result);
 }
 
 function createTable(PDO $pdo) {
@@ -75,9 +79,9 @@ function createTable(PDO $pdo) {
 
     // use exec() because no results are returned
     $pdo->exec($sql);
-    showTable($pdo);
 }
 
+// Check if table exists and if not then create tables
 try {
     $conn = new PDO("mysql:host=$servername;dbname=rhine_Careers", $username, $password);
     // set the PDO error mode to exception
@@ -88,8 +92,64 @@ try {
     }
 catch(PDOException $e)
     {
-    echo "Connection failed: " . $e->getMessage();
+        $errors = json_encode("Connection failed: " . $e->getMessage());
     }
 
+// Insert the post data into the database
+if (!empty($_POST)) {
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=rhine_Careers", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+        $stmt = $conn->prepare("INSERT INTO Users (email, password, firstname, lastname, telephone, address, city, postcode) VALUES (:email, :password, :firstname, :lastname, :telephone, :address, :city, :postcode)");
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':password', $_POST['email']);
+        $stmt->bindParam(':firstname', $_POST['firstname']);
+        $stmt->bindParam(':lastname', $_POST['lastname']);
+        $stmt->bindParam(':telephone', $_POST['telephone']);
+        $stmt->bindParam(':address', $_POST['address']);
+        $stmt->bindParam(':city', $_POST['city']);
+        $stmt->bindParam(':postcode', $_POST['zipcode']);
+        $stmt->execute();
+        $conn = null;   
+        }
+    catch(PDOException $e)
+        {
+        $errors = json_encode("Connection failed: " . $e->getMessage());
+        }
+}
+
+// Create and send Email
+
+if(empty($errors))
+{
+
+    $email = $_POST['email'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $telephone = $_POST['telephone'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
+
+    $to = "eingland@uwm.edu";
+    $subject = "Wooo Email!";
+    $message = "Email: ".$email."\n";
+    $message.= "First Name: ".$firstname."\n";
+    $message.= "Last Name: ".$lastname."\n";
+    $message.= "Telephone: ".$telephone."\n";
+    $message.= "Address: ".$address."\n";
+    $message.= "City: ".$city."\n";
+    $message.= "Zip Code: ".$zipcode."\n";
+
+    mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
+
+	$response_array['status'] = 'success';
+	echo json_encode($response_array);
+} else {
+	$response_array['status'] = 'error';
+	echo json_encode($response_array);
+}
 
 ?>

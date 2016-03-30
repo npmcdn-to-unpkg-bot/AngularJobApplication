@@ -1,15 +1,20 @@
 # RhineProject
 Submission processor for Job Applicants
 
-# How to Start Developing
+## Quick Start
 
-Open Command Window to the directory it is cloned to
+#### Install Node.js
 
-# Install Node Modules
+#### Open command line from cloned directory
+
+#### Install Node Modules
+```
 npm install
+```
 
-# Install Bootstrap
-npm install bootstrap --save
-
-# Start the compiler
+#### Start transpiler
+```
 npm start
+```
+
+### Develop in editor of your choice
