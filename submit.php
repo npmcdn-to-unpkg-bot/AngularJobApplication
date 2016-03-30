@@ -32,7 +32,6 @@ function tableExists(PDO $pdo, $tableName) {
 function getTable(PDO $pdo) {
     $stmt = $pdo->query('SELECT * FROM Users');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    header('Content-Type: application/json');
     echo json_encode($result);
 }
 
@@ -93,8 +92,7 @@ try {
     }
 catch(PDOException $e)
     {
-    header('Content-Type: application/json');
-    echo json_encode("Connection failed: " . $e->getMessage());
+        $errors = json_encode("Connection failed: " . $e->getMessage());
     }
 
 // Insert the post data into the database
@@ -112,17 +110,12 @@ if (!empty($_POST)) {
         $stmt->bindParam(':telephone', $_POST['telephone']);
         $stmt->bindParam(':address', $_POST['address']);
         $stmt->bindParam(':city', $_POST['city']);
-        $stmt->bindParam(':postcode', $_POST['postcode']);
+        $stmt->bindParam(':postcode', $_POST['zipcode']);
         $stmt->execute();
-        $conn = null;
-        
-        header('Content-Type: application/json');
-        echo json_encode("Submitted successfully");  
-        
+        $conn = null;   
         }
     catch(PDOException $e)
         {
-        header('Content-Type: application/json');
         $errors = json_encode("Connection failed: " . $e->getMessage());
         }
 }
@@ -132,25 +125,25 @@ if (!empty($_POST)) {
 if(empty($errors))
 {
 
-$email = $_POST['email'];
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$telephone = $_POST['telephone'];
-$address = $_POST['address'];
-$city = $_POST['city'];
-$zipcode = $_POST['zipcode'];
+    $email = $_POST['email'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $telephone = $_POST['telephone'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
 
-$to = "eingland@uwm.edu";
-$subject = "Wooo Email!";
-$message = "Email: ".$email."\n";
-$message.= "First Name: ".$firstname."\n";
-$message.= "Last Name: ".$lastname."\n";
-$message.= "Telephone: ".$telephone."\n";
-$message.= "Address: ".$address."\n";
-$message.= "City: ".$city."\n";
-$message.= "Zip Code: ".$zipcode."\n";
+    $to = "eingland@uwm.edu";
+    $subject = "Wooo Email!";
+    $message = "Email: ".$email."\n";
+    $message.= "First Name: ".$firstname."\n";
+    $message.= "Last Name: ".$lastname."\n";
+    $message.= "Telephone: ".$telephone."\n";
+    $message.= "Address: ".$address."\n";
+    $message.= "City: ".$city."\n";
+    $message.= "Zip Code: ".$zipcode."\n";
 
-mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
+    mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 
 	$response_array['status'] = 'success';
 	echo json_encode($response_array);
