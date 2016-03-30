@@ -13,16 +13,16 @@ import { ApplicantService } from './applicant.service'
 export class ApplicantFormComponent implements OnInit {
   constructor (private _applicantService: ApplicantService) {}
 
-  model = new Applicant(1, "", "", "", "", "", "", "", "");
+  applicant = new Applicant(1, "", "", "", "", "", "", "", "");
 
   errorMessage: string;
 
   submitted = false;
 
   onSubmit() { this.submitted = true;
-               this._applicantService.addApplicant(this.model.firstname, this.model.lastname, this.model.email, this.model.password, this.model.telephone, this.model.address, this.model.city, this.model.zipcode)
+               this._applicantService.addApplicant(this.applicant)
                .subscribe(
-                  applicant  => this.model,
+                  response  => this.handleResponse(response),
                        error =>  this.errorMessage = <any>error 
                );
                console.log(this.errorMessage);
@@ -37,9 +37,23 @@ export class ApplicantFormComponent implements OnInit {
   active = true;
 
   newApplicant() {
-    this.model = new Applicant(1, "", "", "", "", "", "", "", "");
+    this.applicant = new Applicant(1, "", "", "", "", "", "", "", "");
     this.active = false;
     setTimeout(()=> this.active=true, 0);
   }
+  
+  
+    handleResponse(response){
+      // console.log(`msg is: {response.status}`);
+ 
+      if(response.status =='success'){
+        this.newApplicant();
+        alert('Thank you for your submission.');
+      }
+ 
+      if(response.status =='error'){
+        alert('There was a problems with sending your message. Please try to send this email directly until this is fixed. Thanks.');
+      }
+    }
 
 }

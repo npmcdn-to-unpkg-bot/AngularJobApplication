@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class ApplicantService {
-  constructor (private http: Http) {}
+  constructor (private _http: Http) {}
 
   /*
   private _applicantsUrl = 'app/applicants.json'; // URL to JSON file
@@ -22,20 +22,16 @@ export class ApplicantService {
                     .catch(this.handleError);
   }*/
 
+  addApplicant (applicant: Applicant) : Observable<string>  {
 
-
-
-  addApplicant (firstname: string, lastname: string, email: string, password: string, telephone: string, address: string, city: string, zipcode: string) : Observable<Applicant>  {
-
-    let body = JSON.stringify({ firstname }) + JSON.stringify({ lastname }) + JSON.stringify({ email }) + JSON.stringify({ password }) + JSON.stringify({ telephone }) + JSON.stringify({ address }) + JSON.stringify({ city }) + JSON.stringify({ zipcode });
-    body
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let body = `firstname=${applicant.firstname}&lastname=${applicant.lastname}&email=${applicant.email}&password=${applicant.password}&telephone=${applicant.telephone}&address=${applicant.address}&city=${applicant.city}&zipcode=${applicant.zipcode}`;
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
     
     console.log(body);
 
-    return this.http.post(this._applicantsUrl, body, options)
-                    .map(res =>  <Applicant> res.json().data)
+    return this._http.post(this._applicantsUrl, body, options)
+                    .map(res =>  <string> res.json())
                     .catch(this.handleError)
   }
 

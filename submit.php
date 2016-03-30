@@ -1,7 +1,11 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
-$_POST = json_decode(file_get_contents('php://input'), true);
+header('Content-type: application/json');
+ 
+$errors = '';
+ 
+if(empty($errors))
+{
 
 $email = $_POST['email'];
 $firstname = $_POST['firstname'];
@@ -23,9 +27,13 @@ $message.= "Zip Code: ".$postcode."\n";
 
 mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 
-echo json_encode($to);
-echo json_encode($subject);
-echo json_encode($message);
+	$response_array['status'] = 'success';
+	echo json_encode($response_array);
+} else {
+	$response_array['status'] = 'error';
+	echo json_encode($response_array);
+}
+?>
 
 /*
 $servername = "localhost";
@@ -65,5 +73,3 @@ if (!empty($_POST)) {
     header('Content-Type: application/json');
     echo json_encode("Error: No POST data");
 }*/
-
-?>
