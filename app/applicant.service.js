@@ -27,8 +27,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
             function (_1) {}],
         execute: function() {
             ApplicantService = (function () {
-                function ApplicantService(http) {
-                    this.http = http;
+                function ApplicantService(_http) {
+                    this._http = _http;
                     /*
                     private _applicantsUrl = 'app/applicants.json'; // URL to JSON file
                     */
@@ -40,14 +40,13 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                                   .do(data => console.log(data)) // eyeball results in the console
                                   .catch(this.handleError);
                 }*/
-                ApplicantService.prototype.addApplicant = function (firstname, lastname, email, password, telephone, address, city, zipcode) {
-                    var body = JSON.stringify({ firstname: firstname }) + JSON.stringify({ lastname: lastname }) + JSON.stringify({ email: email }) + JSON.stringify({ password: password }) + JSON.stringify({ telephone: telephone }) + JSON.stringify({ address: address }) + JSON.stringify({ city: city }) + JSON.stringify({ zipcode: zipcode });
-                    body;
-                    var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+                ApplicantService.prototype.addApplicant = function (applicant) {
+                    var body = `firstname=" + applicant.firstname + "&lastname=" + applicant.lastname + "&email=" + applicant.email + "&password=" + applicant.password + "&telephone=" + applicant.telephone + "&address=" + applicant.address + "&city=" + applicant.city + "&zipcode=" + applicant.zipcode`;
+                    var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
                     var options = new http_2.RequestOptions({ headers: headers });
                     console.log(body);
-                    return this.http.post(this._applicantsUrl, body, options)
-                        .map(function (res) { return res.json().data; })
+                    return this._http.post(this._applicantsUrl, body, options)
+                        .map(function (res) { return res.json(); })
                         .catch(this.handleError);
                 };
                 ApplicantService.prototype.handleError = function (error) {

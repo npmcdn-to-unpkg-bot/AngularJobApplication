@@ -13,7 +13,7 @@ $lastname = $_POST['lastname'];
 $telephone = $_POST['telephone'];
 $address = $_POST['address'];
 $city = $_POST['city'];
-$postcode = $_POST['postcode'];
+$zipcode = $_POST['zipcode'];
 
 $to = "eingland@uwm.edu";
 $subject = "Wooo Email!";
@@ -23,7 +23,7 @@ $message.= "Last Name: ".$lastname."\n";
 $message.= "Telephone: ".$telephone."\n";
 $message.= "Address: ".$address."\n";
 $message.= "City: ".$city."\n";
-$message.= "Zip Code: ".$postcode."\n";
+$message.= "Zip Code: ".$zipcode."\n";
 
 mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 

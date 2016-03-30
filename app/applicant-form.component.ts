@@ -23,7 +23,7 @@ export class ApplicantFormComponent implements OnInit {
                this._applicantService.addApplicant(this.applicant)
                .subscribe(
                   response  => this.handleResponse(response),
-                       error =>  this.errorMessage = <any>error 
+                  error => this.handleResponse(error)
                );
                console.log(this.errorMessage);
              }
@@ -47,7 +47,6 @@ export class ApplicantFormComponent implements OnInit {
       // console.log(`msg is: {response.status}`);
  
       if(response.status =='success'){
-        this.newApplicant();
         alert('Thank you for your submission.');
       }
  

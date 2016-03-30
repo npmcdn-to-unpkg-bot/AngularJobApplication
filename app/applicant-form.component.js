@@ -30,7 +30,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
             ApplicantFormComponent = (function () {
                 function ApplicantFormComponent(_applicantService) {
                     this._applicantService = _applicantService;
-                    this.model = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
                     this.submitted = false;
                     // Reset the form with a new applicant AND restore 'pristine' class state
                     // by toggling 'active' flag which causes the form
@@ -41,16 +41,25 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                 ApplicantFormComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.submitted = true;
-                    this._applicantService.addApplicant(this.model.firstname, this.model.lastname, this.model.email, this.model.password, this.model.telephone, this.model.address, this.model.city, this.model.zipcode)
-                        .subscribe(function (applicant) { return _this.model; }, function (error) { return _this.errorMessage = error; });
+                    this._applicantService.addApplicant(this.applicant)
+                        .subscribe(function (response) { return _this.handleResponse(response); }, function (error) { return _this.handleResponse(error); });
                     console.log(this.errorMessage);
                 };
                 ApplicantFormComponent.prototype.ngOnInit = function () { };
                 ApplicantFormComponent.prototype.newApplicant = function () {
                     var _this = this;
-                    this.model = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "");
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);
+                };
+                ApplicantFormComponent.prototype.handleResponse = function (response) {
+                    // console.log(`msg is: {response.status}`);
+                    if (response.status == 'success') {
+                        alert('Thank you for your submission.');
+                    }
+                    if (response.status == 'error') {
+                        alert('There was a problems with sending your message. Please try to send this email directly until this is fixed. Thanks.');
+                    }
                 };
                 ApplicantFormComponent = __decorate([
                     core_1.Component({

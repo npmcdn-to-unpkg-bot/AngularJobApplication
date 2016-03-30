@@ -21,7 +21,7 @@ export class ApplicantService {
                     .do(data => console.log(data)) // eyeball results in the console
                     .catch(this.handleError);
   }*/
-
+  
   addApplicant (applicant: Applicant) : Observable<string>  {
 
     let body = `firstname=${applicant.firstname}&lastname=${applicant.lastname}&email=${applicant.email}&password=${applicant.password}&telephone=${applicant.telephone}&address=${applicant.address}&city=${applicant.city}&zipcode=${applicant.zipcode}`;
