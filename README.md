@@ -12,11 +12,6 @@ Submission processor for Job Applicants
 npm install
 ```
 
-#### Install Bootstrap
-```
-npm install bootstrap --save
-```
-
 #### Start transpiler
 ```
 npm start
