@@ -1,25 +1,25 @@
 # RhineProject
 Submission processor for Job Applicants
 
-### Quick Start
+## Quick Start
 
-# Install Node.js
+#### Install Node.js
 
-# Open command line from cloned directory
+#### Open command line from cloned directory
 
-# Install Node Modules
+#### Install Node Modules
 ```
 npm install
 ```
 
-# Install Bootstrap
+#### Install Bootstrap
 ```
 npm install bootstrap --save
 ```
 
-# Start transpiler
+#### Start transpiler
 ```
 npm start
 ```
 
-# Develop in editor of your choice
+### Develop in editor of your choice
