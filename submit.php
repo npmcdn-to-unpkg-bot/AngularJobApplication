@@ -33,7 +33,6 @@ mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 	$response_array['status'] = 'error';
 	echo json_encode($response_array);
 }
-?>
 
 /*
 $servername = "localhost";
@@ -73,3 +72,5 @@ if (!empty($_POST)) {
     header('Content-Type: application/json');
     echo json_encode("Error: No POST data");
 }*/
+
+?>
