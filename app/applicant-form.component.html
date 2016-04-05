@@ -159,6 +159,14 @@
       <div class="col-xs-3">U.S. Citizen</div>
       <div class="col-xs-9  pull-left">{{ applicant.citizen }}</div>
     </div>
+    <div class="row">
+      <div class="col-xs-3">Felon Status</div>
+      <div class="col-xs-9  pull-left">{{ applicant.felon }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Felony Explanation</div>
+      <div class="col-xs-9  pull-left">{{ applicant.feloncomment }}</div>
+    </div>
 
     <br>
     <button class="btn btn-default" (click)="submitted=false">Edit</button>
