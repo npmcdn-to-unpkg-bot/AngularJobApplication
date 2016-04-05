@@ -24,7 +24,7 @@ export class ApplicantService {
   
   addApplicant (applicant: Applicant) : Observable<string>  {
 
-    let body = `firstname=${applicant.firstname}&lastname=${applicant.lastname}&email=${applicant.email}&password=${applicant.password}&telephone=${applicant.telephone}&address=${applicant.address}&city=${applicant.city}&zipcode=${applicant.zipcode}`;
+    let body = `firstname=${applicant.firstname}&lastname=${applicant.lastname}&email=${applicant.email}&password=${applicant.password}&telephone=${applicant.telephone}&address=${applicant.address}&city=${applicant.city}&zipcode=${applicant.zipcode}&citizen=${applicant.citizen}&felon=${applicant.felon}&feloncomment=${applicant.feloncomment}`;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
     

@@ -9,7 +9,10 @@ export class Applicant {
     public telephone: string,
     public address: string,
     public city: string,
-    public zipcode: string
+    public zipcode: string,
+    public citizen: boolean,
+    public felon: boolean,
+    public feloncomment: string
   ) {  }
 
 }

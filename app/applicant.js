@@ -6,7 +6,7 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             Applicant = (function () {
-                function Applicant(id, firstname, lastname, email, password, telephone, address, city, zipcode) {
+                function Applicant(id, firstname, lastname, email, password, telephone, address, city, zipcode, citizen, felon, feloncomment) {
                     this.id = id;
                     this.firstname = firstname;
                     this.lastname = lastname;
@@ -16,6 +16,9 @@ System.register([], function(exports_1, context_1) {
                     this.address = address;
                     this.city = city;
                     this.zipcode = zipcode;
+                    this.citizen = citizen;
+                    this.felon = felon;
+                    this.feloncomment = feloncomment;
                 }
                 return Applicant;
             }());

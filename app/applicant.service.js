@@ -41,7 +41,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                                   .catch(this.handleError);
                 }*/
                 ApplicantService.prototype.addApplicant = function (applicant) {
-                    var body = `firstname=" + applicant.firstname + "&lastname=" + applicant.lastname + "&email=" + applicant.email + "&password=" + applicant.password + "&telephone=" + applicant.telephone + "&address=" + applicant.address + "&city=" + applicant.city + "&zipcode=" + applicant.zipcode`;
+                    var body = "firstname=" + applicant.firstname + "&lastname=" + applicant.lastname + "&email=" + applicant.email + "&password=" + applicant.password + "&telephone=" + applicant.telephone + "&address=" + applicant.address + "&city=" + applicant.city + "&zipcode=" + applicant.zipcode + "&citizen=" + applicant.citizen + "&felon=" + applicant.felon + "&feloncomment=" + applicant.feloncomment;
                     var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
                     var options = new http_2.RequestOptions({ headers: headers });
                     console.log(body);

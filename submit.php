@@ -112,6 +112,10 @@ if (!empty($_POST)) {
         $stmt->bindParam(':city', $_POST['city']);
         $stmt->bindParam(':postcode', $_POST['zipcode']);
         $stmt->execute();
+        
+        // TODO: Insert Application data into Applications table and link to user record
+        
+        
         $conn = null;   
         }
     catch(PDOException $e)
@@ -132,9 +136,12 @@ if(empty($errors))
     $address = $_POST['address'];
     $city = $_POST['city'];
     $zipcode = $_POST['zipcode'];
+    $citizen = $_POST['citizen'];
+    $felon = $_POST['felon'];
+    $feloncomment = $_POST['feloncomment'];
 
     $to = "eingland@uwm.edu";
-    $subject = "Wooo Email!";
+    $subject = "New Job Applicant";
     $message = "Email: ".$email."\n";
     $message.= "First Name: ".$firstname."\n";
     $message.= "Last Name: ".$lastname."\n";
@@ -142,6 +149,9 @@ if(empty($errors))
     $message.= "Address: ".$address."\n";
     $message.= "City: ".$city."\n";
     $message.= "Zip Code: ".$zipcode."\n";
+    $message.= "US Citizen: ".$citizen."\n";
+    $message.= "Felon: ".$felon."\n";
+    $message.= "Felony Explanation: ".$feloncomment."\n";
 
     mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 
