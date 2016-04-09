@@ -15,6 +15,7 @@ export class Applicant {
     public felon: boolean,
     public feloncomment: string,
     public desiredposition: string,
+    public desiredwage: string,
     public employers: Employer[]
   ) {  }
 

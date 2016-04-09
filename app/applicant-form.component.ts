@@ -25,7 +25,7 @@ export class ApplicantFormComponent implements OnInit {
     new Employer(2, "", "", "", false),
     new Employer(3, "", "", "", false)];
   
-  applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
+  applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], "", this.employers);
 
 
   onSubmit() { this.submitted = true;
@@ -46,7 +46,7 @@ export class ApplicantFormComponent implements OnInit {
   active = true;
 
   newApplicant() {
-    this.applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
+    this.applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], "", this.employers);
     this.active = false;
     setTimeout(()=> this.active=true, 0);
   }
