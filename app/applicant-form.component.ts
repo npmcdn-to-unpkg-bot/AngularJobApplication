@@ -13,11 +13,15 @@ import { ApplicantService } from './applicant.service'
 export class ApplicantFormComponent implements OnInit {
   constructor (private _applicantService: ApplicantService) {}
 
-  applicant = new Applicant(1, "", "", "", "", "", "", "", "", false, false, "");
 
   errorMessage: string;
 
   submitted = false;
+  
+  positions = ['Line Worker', 'Other'];
+  
+  applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
+
 
   onSubmit() { this.submitted = true;
                this._applicantService.addApplicant(this.applicant)
@@ -37,7 +41,7 @@ export class ApplicantFormComponent implements OnInit {
   active = true;
 
   newApplicant() {
-    this.applicant = new Applicant(1, "", "", "", "", "", "", "", "", false, false, "");
+    this.applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
     this.active = false;
     setTimeout(()=> this.active=true, 0);
   }

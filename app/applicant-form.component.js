@@ -30,8 +30,9 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
             ApplicantFormComponent = (function () {
                 function ApplicantFormComponent(_applicantService) {
                     this._applicantService = _applicantService;
-                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "", false, false, "");
                     this.submitted = false;
+                    this.positions = ['Line Worker', 'Other'];
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
                     // Reset the form with a new applicant AND restore 'pristine' class state
                     // by toggling 'active' flag which causes the form
                     // to be removed/re-added in a tick via NgIf
@@ -48,7 +49,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                 ApplicantFormComponent.prototype.ngOnInit = function () { };
                 ApplicantFormComponent.prototype.newApplicant = function () {
                     var _this = this;
-                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", "", false, false, "");
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);
                 };
