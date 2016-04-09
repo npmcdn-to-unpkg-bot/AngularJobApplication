@@ -24,7 +24,31 @@ export class ApplicantService {
   
   addApplicant (applicant: Applicant) : Observable<string>  {
 
-    let body = `firstname=${applicant.firstname}&lastname=${applicant.lastname}&email=${applicant.email}&password=${applicant.password}&telephone=${applicant.telephone}&address=${applicant.address}&city=${applicant.city}&zipcode=${applicant.zipcode}`;
+    let body = `firstname=${applicant.firstname}
+    &lastname=${applicant.lastname}
+    &email=${applicant.email}
+    &telephone=${applicant.telephone}
+    &address=${applicant.address}
+    &city=${applicant.city}
+    &zipcode=${applicant.zipcode}
+    &citizen=${applicant.citizen}
+    &felon=${applicant.felon}
+    &feloncomment=${applicant.feloncomment}
+    &desiredposition=${applicant.desiredposition}
+    &desiredwage=${applicant.desiredwage}
+    &employername1=${applicant.employers[0].name}
+    &employerposition1=${applicant.employers[0].position}
+    &employerwage1=${applicant.employers[0].wage}
+    &employerpermission1=${applicant.employers[0].permissiontocontact}
+    &employername2=${applicant.employers[1].name}
+    &employerposition2=${applicant.employers[1].position}
+    &employerwage2=${applicant.employers[1].wage}
+    &employerpermission2=${applicant.employers[1].permissiontocontact}
+    &employername3=${applicant.employers[2].name}
+    &employerposition3=${applicant.employers[2].position}
+    &employerwage3=${applicant.employers[2].wage}
+    &employerpermission3=${applicant.employers[2].permissiontocontact}
+    `;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
     
