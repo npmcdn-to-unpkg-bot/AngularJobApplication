@@ -24,8 +24,8 @@
       
       <div class="form-group">
         <label>Email</label>
-        <input md-input
-            id="email"
+        <input id="email"
+            class="form-control"
             type="text"
             ngControl="email"
             #email="ngForm"
@@ -33,11 +33,11 @@
             required
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 
-        <div class="md-errors-spacer" [hidden]="email.valid || email.untouched">
-            <div class="md-char-counter" *ngIf="email.errors && email.errors.required">
+        <div [hidden]="email.valid || email.untouched">
+            <div class="alert alert-danger" *ngIf="email.errors && email.errors.required">
                 Email is required
             </div>
-            <div class="md-char-counter" *ngIf="email.errors && email.errors.pattern">
+            <div class="alert alert-danger" *ngIf="email.errors && email.errors.pattern">
                 Email is invalid
             </div>
         </div>
