@@ -139,6 +139,18 @@ if(empty($errors))
     $citizen = $_POST['citizen'];
     $felon = $_POST['felon'];
     $feloncomment = $_POST['feloncomment'];
+    $employername1 = $_POST['employername1'];
+    $employerposition1 = $_POST['employerposition1'];
+    $employerwage1 = $_POST['employerwage1'];
+    $employerpermission1 = $_POST['employerpermission2'];
+    $employername2 = $_POST['employername2'];
+    $employerposition2 = $_POST['employerposition2'];
+    $employerwage2 = $_POST['employerwage2'];
+    $employerpermission2 = $_POST['employerpermission2'];
+    $employername3 = $_POST['employername3'];
+    $employerposition3 = $_POST['employerposition3'];
+    $employerwage3 = $_POST['employerwage3'];
+    $employerpermission3 = $_POST['employerpermission3'];
 
     $to = "eingland@uwm.edu";
     $subject = "New Job Applicant";
@@ -152,6 +164,20 @@ if(empty($errors))
     $message.= "US Citizen: ".$citizen."\n";
     $message.= "Felon: ".$felon."\n";
     $message.= "Felony Explanation: ".$feloncomment."\n";
+    $message.= "Desired Position: ".$desiredposition."\n";
+    $message.= "Desired Wage: ".$desiredwage."\n";
+    $message.= "Previous Employer 1 Name: ".$employername1."\n";
+    $message.= "Previous Employer 1 Position: ".$employerposition1."\n";
+    $message.= "Previous Employer 1 Wage: ".$employerwage1."\n";
+    $message.= "Previous Employer 1 Permission to contact: ".$employerpermission1."\n";
+    $message.= "Previous Employer 2 Name: ".$employername2."\n";
+    $message.= "Previous Employer 2 Position: ".$employerposition2."\n";
+    $message.= "Previous Employer 2 Wage: ".$employerwage2."\n";
+    $message.= "Previous Employer 2 Permission to contact: ".$employerpermission2."\n";
+    $message.= "Previous Employer 3 Name: ".$employername3."\n";
+    $message.= "Previous Employer 3 Position: ".$employerposition3."\n";
+    $message.= "Previous Employer 3 Wage: ".$employerwage3."\n";
+    $message.= "Previous Employer 3 Permission to contact: ".$employerpermission3."\n";
 
     mail($to, $subject, $message, "From: system@barroncountycheese.com\r\n");
 
