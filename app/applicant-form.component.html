@@ -115,6 +115,36 @@
         </div>
       </div>
       
+      <div class="form-group">
+        <label for="employername1">Previous Employer Name</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[0].name"
+            ngControl="employername1"  #employername1="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employertitle1">Previous Position Title</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[0].title"
+            ngControl="employertitle1"  #employertitle1="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employerwage1">Previous Wage</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[0].wage"
+            ngControl="employerwage1"  #employerwage1="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <div>
+        <label for="employerpermission1">Permission to Contact?</label>
+        </div>
+        <div class="btn-group">
+            <label class="btn btn-primary" [class.active]="applicant.employers[0].permissiontocontact" name="felon" uib-btn-radio="'true'" (click)="applicant.employers[0].permissiontocontact = true">Yes</label>
+            <label class="btn btn-primary" [class.active]="!applicant.employers[0].permissiontocontact" name="felon" uib-btn-radio="'false'" (click)="applicant.employers[0].permissiontocontact = false" checked>No</label>
+        </div>
+      </div>
       
       <!-- TODO: Add fields for previous employers -->
       

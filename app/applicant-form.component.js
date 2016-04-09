@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './applicant', './applicant.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './applicant', './applicant.service', './employer'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, applicant_1, applicant_service_1;
+    var core_1, http_1, applicant_1, applicant_service_1, employer_1;
     var ApplicantFormComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
             },
             function (applicant_service_1_1) {
                 applicant_service_1 = applicant_service_1_1;
+            },
+            function (employer_1_1) {
+                employer_1 = employer_1_1;
             }],
         execute: function() {
             ApplicantFormComponent = (function () {
@@ -32,7 +35,10 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                     this._applicantService = _applicantService;
                     this.submitted = false;
                     this.positions = ['Line Worker', 'Other'];
-                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
+                    this.employers = [new employer_1.Employer(1, "", "", "", false),
+                        new employer_1.Employer(2, "", "", "", false),
+                        new employer_1.Employer(3, "", "", "", false)];
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
                     // Reset the form with a new applicant AND restore 'pristine' class state
                     // by toggling 'active' flag which causes the form
                     // to be removed/re-added in a tick via NgIf
@@ -49,7 +55,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                 ApplicantFormComponent.prototype.ngOnInit = function () { };
                 ApplicantFormComponent.prototype.newApplicant = function () {
                     var _this = this;
-                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
+                    this.applicant = new applicant_1.Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);
                 };

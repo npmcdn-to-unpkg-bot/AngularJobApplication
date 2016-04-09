@@ -4,7 +4,7 @@ export class Employer {
     public id: number,
     public name: string,
     public position: string,
-    public wage: number,
+    public wage: string,
     public permissiontocontact: boolean
   ) { }
 }

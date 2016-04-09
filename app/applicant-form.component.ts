@@ -2,7 +2,8 @@ import {Component, OnInit} from 'angular2/core';
 import {HTTP_PROVIDERS}    from 'angular2/http';
 import {NgForm}    from 'angular2/common';
 import { Applicant }    from './applicant';
-import { ApplicantService } from './applicant.service'
+import { ApplicantService } from './applicant.service';
+import { Employer } from './employer';
 
 @Component({
   selector: 'applicant-form',
@@ -20,7 +21,11 @@ export class ApplicantFormComponent implements OnInit {
   
   positions = ['Line Worker', 'Other'];
   
-  applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
+  employers = [new Employer(1, "", "", "", false),
+    new Employer(2, "", "", "", false),
+    new Employer(3, "", "", "", false)];
+  
+  applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
 
 
   onSubmit() { this.submitted = true;
@@ -41,7 +46,7 @@ export class ApplicantFormComponent implements OnInit {
   active = true;
 
   newApplicant() {
-    this.applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], null);
+    this.applicant = new Applicant(1, "", "", "", "", "", "", "", false, false, "", this.positions[0], this.employers);
     this.active = false;
     setTimeout(()=> this.active=true, 0);
   }
