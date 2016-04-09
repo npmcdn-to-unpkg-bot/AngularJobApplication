@@ -139,6 +139,8 @@ if(empty($errors))
     $citizen = $_POST['citizen'];
     $felon = $_POST['felon'];
     $feloncomment = $_POST['feloncomment'];
+    $desiredposition = $_POST['desiredposition'];
+    $desiredwage = $_POST['desiredwage'];
     $employername1 = $_POST['employername1'];
     $employerposition1 = $_POST['employerposition1'];
     $employerwage1 = $_POST['employerwage1'];
