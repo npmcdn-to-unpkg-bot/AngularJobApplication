@@ -116,6 +116,16 @@
       </div>
       
       <div class="form-group">
+        <label for="desiredwage">Desired Wage</label>
+        <input type="text" class="form-control" required
+          [(ngModel)]="applicant.desiredwage"
+            ngControl="desiredwage"  #desiredwage="ngForm" >
+        <div [hidden]="desiredwage.valid || desiredwage.pristine" class="alert alert-danger">
+          Desired Wage is required
+        </div>
+      </div>
+      
+      <div class="form-group">
         <label for="employername1">Previous Employer Name</label>
         <input type="text" class="form-control" 
           [(ngModel)]="applicant.employers[0].name"
@@ -146,7 +156,67 @@
         </div>
       </div>
       
-      <!-- TODO: Add fields for previous employers -->
+      <div class="form-group">
+        <label for="employername2">Previous Employer Name</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[1].name"
+            ngControl="employername2"  #employername2="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employertitle2">Previous Position Title</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[1].title"
+            ngControl="employertitle2"  #employertitle2="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employerwage2">Previous Wage</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[1].wage"
+            ngControl="employerwage2"  #employerwage2="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <div>
+        <label for="employerpermission2">Permission to Contact?</label>
+        </div>
+        <div class="btn-group">
+            <label class="btn btn-primary" [class.active]="applicant.employers[1].permissiontocontact" name="felon" uib-btn-radio="'true'" (click)="applicant.employers[1].permissiontocontact = true">Yes</label>
+            <label class="btn btn-primary" [class.active]="!applicant.employers[1].permissiontocontact" name="felon" uib-btn-radio="'false'" (click)="applicant.employers[1].permissiontocontact = false" checked>No</label>
+        </div>
+      </div>
+      
+            <div class="form-group">
+        <label for="employername3">Previous Employer Name</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[2].name"
+            ngControl="employername3"  #employername3="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employertitle3">Previous Position Title</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[2].title"
+            ngControl="employertitle3"  #employertitle3="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <label for="employerwage3">Previous Wage</label>
+        <input type="text" class="form-control" 
+          [(ngModel)]="applicant.employers[2].wage"
+            ngControl="employerwage3"  #employerwage3="ngForm" >
+      </div>
+      
+      <div class="form-group">
+        <div>
+        <label for="employerpermission3">Permission to Contact?</label>
+        </div>
+        <div class="btn-group">
+            <label class="btn btn-primary" [class.active]="applicant.employers[2].permissiontocontact" name="felon" uib-btn-radio="'true'" (click)="applicant.employers[2].permissiontocontact = true">Yes</label>
+            <label class="btn btn-primary" [class.active]="!applicant.employers[2].permissiontocontact" name="felon" uib-btn-radio="'false'" (click)="applicant.employers[2].permissiontocontact = false" checked>No</label>
+        </div>
+      </div>
       
       
       <button type="submit" class="btn btn-default" [disabled]="!applicantForm.form.valid">Submit</button>
