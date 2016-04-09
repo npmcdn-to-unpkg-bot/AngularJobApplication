@@ -267,6 +267,62 @@
       <div class="col-xs-3">Felony Explanation</div>
       <div class="col-xs-9  pull-left">{{ applicant.feloncomment }}</div>
     </div>
+    <div class="row">
+      <div class="col-xs-3">Desired Position</div>
+      <div class="col-xs-9  pull-left">{{ applicant.desiredposition }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Desired Wage</div>
+      <div class="col-xs-9  pull-left">{{ applicant.desiredwage }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 1 Name</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[0].name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 1 Position</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[0].position }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 1 Wage</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[0].wage }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 1 Permission to Contact</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[0].permissiontocontact }}</div>
+    </div>
+        <div class="row">
+      <div class="col-xs-3">Employer 2 Name</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[1].name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 2 Position</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[1].position }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 2 Wage</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[1].wage }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 2 Permission to Contact</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[1].permissiontocontact }}</div>
+    </div>
+        <div class="row">
+      <div class="col-xs-3">Employer 3 Name</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[2].name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 3 Position</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[2].position }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 3 Wage</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[2].wage }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employer 3 Permission to Contact</div>
+      <div class="col-xs-9  pull-left">{{ applicant.employers[2].permissiontocontact }}</div>
+    </div>
 
     <br>
     <button class="btn btn-default" (click)="submitted=false">Edit</button>
