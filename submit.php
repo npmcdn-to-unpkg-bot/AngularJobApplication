@@ -4,9 +4,9 @@ header('Content-type: application/json');
  
 $errors = '';
 
-$servername = "localhost";
-$username = "rhine_Careers";
-$password = "ZOnprN1uBP87BWMYUUp4!";
+$servername = "sql5c40b.carrierzone.com";
+$username = "cwl4uqlxmy112620";
+$password = "AVB123dbc!BCD#$";
 
 function tableExists(PDO $pdo, $tableName) {
     $mrSql = "SHOW TABLES LIKE :table_name";
@@ -84,8 +84,12 @@ function createTable(PDO $pdo) {
 // Check if table exists and if not then create tables
 try {
     $conn = new PDO("mysql:host=$servername;dbname=rhine_Careers", $username, $password);
+    
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Select database
+    $conn->query("use APP_cwl4uqlxmy547873");
 
     tableExists($conn, "Users");
     $conn = null;
