@@ -2,7 +2,7 @@
 
 header('Content-type: application/json');
  
-$errors = '';
+/*$errors = '';
 
 $servername = "sql5c40b.carrierzone.com";
 $username = "cwl4uqlxmy112620";
@@ -127,6 +127,7 @@ if (!empty($_POST)) {
         $errors = json_encode("Connection failed: " . $e->getMessage());
         }
 }
+*/
 
 // Create and send Email
 
