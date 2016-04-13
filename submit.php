@@ -158,7 +158,7 @@ if(empty($errors))
     $employerwage3 = $_POST['employerwage3'];
     $employerpermission3 = $_POST['employerpermission3'];
 
-    $to = "eingland@uwm.edu";
+    $to = "bcc-hr@outlook.com";
     $subject = "New Job Applicant";
     $message = "Email: ".$email."\n";
     $message.= "First Name: ".$firstname."\n";
