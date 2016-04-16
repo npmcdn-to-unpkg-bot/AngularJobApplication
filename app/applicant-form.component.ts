@@ -57,9 +57,9 @@ export class ApplicantFormComponent implements OnInit {
  
       if(response.status =='success'){
         alert('Thank you for your submission.');
-      }
- 
-      if(response.status =='error'){
+      } else if(response.status =='error'){
+        alert('Please complete the recapcha by checking the box.');
+      } else {
         alert('There was a problems with sending your message. Please try to send this email directly until this is fixed. Thanks.');
       }
     }

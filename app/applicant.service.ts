@@ -23,6 +23,7 @@ export class ApplicantService {
   }*/
   
   addApplicant (applicant: Applicant) : Observable<string>  {
+    let grecapcharesponse = (<HTMLInputElement>document.getElementById("g-recaptcha-response")).value;
 
     let body = `firstname=${applicant.firstname}
     &lastname=${applicant.lastname}
@@ -48,6 +49,7 @@ export class ApplicantService {
     &employerposition3=${applicant.employers[2].position}
     &employerwage3=${applicant.employers[2].wage}
     &employerpermission3=${applicant.employers[2].permissiontocontact}
+    &g-recaptcha-response=${grecapcharesponse}
     `;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
