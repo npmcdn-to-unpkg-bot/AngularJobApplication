@@ -40,7 +40,7 @@
             #email="ngForm"
             [(ngModel)]="applicant.email"
             required
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            pattern="^\w+([\.-]?\w+)*&#64;\w+([\.-]?\w+)*(\.\w{2,3})+$">
 
         <div [hidden]="email.valid || email.untouched">
             <div class="alert alert-danger" *ngIf="email.errors && email.errors.required">
@@ -104,9 +104,15 @@
            minlength="5"
            [(ngModel)]="applicant.zipcode"
            ngControl="zipcode"  
-           #zipcode="ngForm" >
-        <div [hidden]="zipcode.valid || zipcode.pristine" class="alert alert-danger">
-          Zip Code is required
+           #zipcode="ngForm"
+           pattern="[0-9]{5}" >
+        <div [hidden]="zipcode.valid || zipcode.untouched">
+            <div class="alert alert-danger" *ngIf="zipcode.errors && zipcode.errors.required">
+                Zip Code is required
+            </div>
+            <div class="alert alert-danger" *ngIf="zipcode.errors && zipcode.errors.pattern">
+                Zip Code is invalid
+            </div>
         </div>
       </div>
       
