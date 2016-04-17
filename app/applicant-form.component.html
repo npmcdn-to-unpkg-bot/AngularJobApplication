@@ -10,9 +10,15 @@
           maxlength="30"
           [(ngModel)]="applicant.firstname"
           ngControl="firstname"  
-          #firstname="ngForm" >
-        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
-          First Name is required
+          #firstname="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+        <div [hidden]="firstname.valid || firstname.untouched">
+            <div class="alert alert-danger" *ngIf="firstname.errors && firstname.errors.required">
+                First Name is required
+            </div>
+            <div class="alert alert-danger" *ngIf="firstname.errors && firstname.errors.pattern">
+                First Name is invalid
+            </div>
         </div>
       </div>
       
@@ -24,9 +30,15 @@
           maxlength="30"
           [(ngModel)]="applicant.lastname"
           ngControl="lastname"  
-          #lastname="ngForm" >
-        <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
-          Last Name is required
+          #lastname="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+        <div [hidden]="lastname.valid || lastname.untouched">
+            <div class="alert alert-danger" *ngIf="lastname.errors && lastname.errors.required">
+                Last Name is required
+            </div>
+            <div class="alert alert-danger" *ngIf="lastname.errors && lastname.errors.pattern">
+                Last Name is invalid
+            </div>
         </div>
       </div>
       
@@ -60,9 +72,15 @@
           maxlength="30"
           [(ngModel)]="applicant.telephone"
           ngControl="telephone"  
-          #telephone="ngForm" >
-        <div [hidden]="telephone.valid || telephone.pristine" class="alert alert-danger">
-          Telephone is required
+          #telephone="ngForm"
+          pattern="/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)?\d{4}$/" >
+        <div [hidden]="telephone.valid || telephone.untouched">
+            <div class="alert alert-danger" *ngIf="telephone.errors && telephone.errors.required">
+                Telephone is required
+            </div>
+            <div class="alert alert-danger" *ngIf="telephone.errors && telephone.errors.pattern">
+                Telephone is invalid
+            </div>
         </div>
       </div>
       
@@ -74,9 +92,15 @@
           maxlength="30"
           [(ngModel)]="applicant.address"
           ngControl="address"  
-          #address="ngForm" >
-        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
-          Address is required
+          #address="ngForm"
+          pattern="^[a-zA-Z0-9\s,'-]*$" >
+        <div [hidden]="address.valid || address.untouched">
+            <div class="alert alert-danger" *ngIf="address.errors && address.errors.required">
+                Address is required
+            </div>
+            <div class="alert alert-danger" *ngIf="address.errors && address.errors.pattern">
+                Address is invalid
+            </div>
         </div>
       </div>
       
@@ -89,9 +113,15 @@
           maxlength="30"
           [(ngModel)]="applicant.city"
           ngControl="city"  
-          #city="ngForm" >
-        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
-          City is required
+          #city="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+        <div [hidden]="city.valid || city.untouched">
+            <div class="alert alert-danger" *ngIf="city.errors && city.errors.required">
+                City is required
+            </div>
+            <div class="alert alert-danger" *ngIf="city.errors && adcitydress.errors.pattern">
+                City is invalid
+            </div>
         </div>
       </div>
       
@@ -157,11 +187,17 @@
           maxlength="30"
           [(ngModel)]="applicant.desiredposition"
           ngControl="desiredposition" 
-          #desiredposition="ngForm" >
+          #desiredposition="ngForm"
+          pattern="/[^a-zA-Z]+/" >
             <option *ngFor="#p of positions" [value]="p">{{p}}</option>
         </select>
-        <div [hidden]="desiredposition.valid || desiredposition.pristine" class="alert alert-danger">
-          Desired Position is required
+        <div [hidden]="desiredposition.valid || desiredposition.untouched">
+            <div class="alert alert-danger" *ngIf="desiredposition.errors && desiredposition.errors.required">
+                Desired Position is required
+            </div>
+            <div class="alert alert-danger" *ngIf="desiredposition.errors && desiredposition.errors.pattern">
+                Desired Position is invalid
+            </div>
         </div>
       </div>
       
@@ -173,9 +209,15 @@
           maxlength="30"
           [(ngModel)]="applicant.desiredwage"
           ngControl="desiredwage"  
-          #desiredwage="ngForm" >
-        <div [hidden]="desiredwage.valid || desiredwage.pristine" class="alert alert-danger">
-          Desired Wage is required
+          #desiredwage="ngForm"
+          pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
+        <div [hidden]="desiredwage.valid || desiredwage.untouched">
+            <div class="alert alert-danger" *ngIf="desiredwage.errors && desiredwage.errors.required">
+                Desired Wage is required
+            </div>
+            <div class="alert alert-danger" *ngIf="desiredwage.errors && desiredwage.errors.pattern">
+                Desired Wage is invalid
+            </div>
         </div>
       </div>
       
@@ -185,7 +227,13 @@
           class="form-control" 
           [(ngModel)]="applicant.employers[0].name"
           ngControl="employername1"  
-          #employername1="ngForm" >
+          #employername1="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[0].name.valid || employers[0].name.untouched">
+            <div class="alert alert-danger" *ngIf="employers[0].name.errors && employers[0].name.errors.pattern">
+                Previous Employer Name is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -195,7 +243,13 @@
           maxlength="30"
           [(ngModel)]="applicant.employers[0].title"
           ngControl="employertitle1"  
-          #employertitle1="ngForm" >
+          #employertitle1="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[0].title.valid || employers[0].title.untouched">
+            <div class="alert alert-danger" *ngIf="employers[0].title.errors && employers[0].title.errors.pattern">
+                Previous Position Title is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -204,7 +258,13 @@
           maxlength="10"
           [(ngModel)]="applicant.employers[0].wage"
           ngControl="employerwage1"  
-          #employerwage1="ngForm" >
+          #employerwage1="ngForm"
+          pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
+          <div [hidden]="employers[0].wage.valid || employers[0].wage.untouched">
+            <div class="alert alert-danger" *ngIf="employers[0].wage.errors && employers[0].wage.errors.pattern">
+                Previous Wage is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -223,7 +283,13 @@
           maxlength="30" 
           [(ngModel)]="applicant.employers[1].name"
           ngControl="employername2"  
-          #employername2="ngForm" >
+          #employername2="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[1].name.valid || employers[1].name.untouched">
+            <div class="alert alert-danger" *ngIf="employers[1].name.errors && employers[1].name.errors.pattern">
+                Previous Employer Name is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -232,7 +298,13 @@
           maxlength="30"
           [(ngModel)]="applicant.employers[1].title"
           ngControl="employertitle2"  
-          #employertitle2="ngForm" >
+          #employertitle2="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[1].title.valid || employers[1].title.untouched">
+            <div class="alert alert-danger" *ngIf="employers[1].title.errors && employers[1].title.errors.pattern">
+                Previous Position Title is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -241,7 +313,13 @@
           maxlength="10"
           [(ngModel)]="applicant.employers[1].wage"
           ngControl="employerwage2"  
-          #employerwage2="ngForm" >
+          #employerwage2="ngForm"
+          pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
+          <div [hidden]="employers[1].wage.valid || employers[1].wage.untouched">
+            <div class="alert alert-danger" *ngIf="employers[1].wage.errors && employers[1].wage.errors.pattern">
+                Previous Wage is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -260,7 +338,13 @@
           maxlength="30"
           [(ngModel)]="applicant.employers[2].name"
           ngControl="employername3"  
-          #employername3="ngForm" >
+          #employername3="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[2].name.valid || employers[2].name.untouched">
+            <div class="alert alert-danger" *ngIf="employers[2].name.errors && employers[2].name.errors.pattern">
+                Previous Employer Name is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -269,7 +353,13 @@
           maxlength="30"
           [(ngModel)]="applicant.employers[2].title"
           ngControl="employertitle3" 
-          #employertitle3="ngForm" >
+          #employertitle3="ngForm"
+          pattern="/[^a-zA-Z]+/" >
+          <div [hidden]="employers[2].title.valid || employers[2].title.untouched">
+            <div class="alert alert-danger" *ngIf="employers[2].title.errors && employers[2].title.errors.pattern">
+                Previous Position Title is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
@@ -278,7 +368,13 @@
           maxlength="10"
           [(ngModel)]="applicant.employers[2].wage"
           ngControl="employerwage3"  
-          #employerwage3="ngForm" >
+          #employerwage3="ngForm"
+          pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
+          <div [hidden]="employers[2].wage.valid || employers[2].wage.untouched">
+            <div class="alert alert-danger" *ngIf="employers[2].wage.errors && employers[2].wage.errors.pattern">
+                Previous Wage is invalid
+            </div>
+          </div>
       </div>
       
       <div class="form-group">
