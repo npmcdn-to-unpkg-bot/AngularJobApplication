@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './applicant', './applicant.service', './employer'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './applicant', './applicant.service', './employer', './recaptcha'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, applicant_1, applicant_service_1, employer_1;
+    var core_1, http_1, applicant_1, applicant_service_1, employer_1, recaptcha_1;
     var ApplicantFormComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
             },
             function (employer_1_1) {
                 employer_1 = employer_1_1;
+            },
+            function (recaptcha_1_1) {
+                recaptcha_1 = recaptcha_1_1;
             }],
         execute: function() {
             ApplicantFormComponent = (function () {
@@ -44,6 +47,7 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                     // to be removed/re-added in a tick via NgIf
                     // TODO: Workaround until NgForm has a reset method (#6822)
                     this.active = true;
+                    this.siteKey = '6LelRR0TAAAAAGwoJdr-e9ylT3p8Us-UxfolvJbd';
                 }
                 ApplicantFormComponent.prototype.onSubmit = function () {
                     var _this = this;
@@ -64,7 +68,10 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                     if (response.status == 'success') {
                         alert('Thank you for your submission.');
                     }
-                    if (response.status == 'error') {
+                    else if (response.status == 'error') {
+                        alert('Please complete the recapcha by checking the box.');
+                    }
+                    else {
                         alert('There was a problems with sending your message. Please try to send this email directly until this is fixed. Thanks.');
                     }
                 };
@@ -73,7 +80,9 @@ System.register(['angular2/core', 'angular2/http', './applicant', './applicant.s
                         selector: 'applicant-form',
                         templateUrl: 'app/applicant-form.component.html',
                         providers: [http_1.HTTP_PROVIDERS,
-                            applicant_service_1.ApplicantService]
+                            applicant_service_1.ApplicantService,
+                            recaptcha_1.CaptchaService],
+                        directives: [recaptcha_1.ReCaptcha]
                     }), 
                     __metadata('design:paramtypes', [applicant_service_1.ApplicantService])
                 ], ApplicantFormComponent);

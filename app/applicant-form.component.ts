@@ -4,15 +4,21 @@ import {NgForm}    from 'angular2/common';
 import { Applicant }    from './applicant';
 import { ApplicantService } from './applicant.service';
 import { Employer } from './employer';
+import {ReCaptcha, CaptchaService} from './recaptcha'
 
 @Component({
   selector: 'applicant-form',
   templateUrl: 'app/applicant-form.component.html',
   providers: [HTTP_PROVIDERS,
-      ApplicantService]
+      ApplicantService,
+      CaptchaService],
+  directives: [ReCaptcha]
 })
 export class ApplicantFormComponent implements OnInit {
-  constructor (private _applicantService: ApplicantService) {}
+  private siteKey: string;
+  constructor (private _applicantService: ApplicantService) {
+    this.siteKey = '6LelRR0TAAAAAGwoJdr-e9ylT3p8Us-UxfolvJbd';
+  }
 
 
   errorMessage: string;

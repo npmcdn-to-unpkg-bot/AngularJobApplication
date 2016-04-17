@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" onload="onloadCallback()">
   <div  [hidden]="submitted">
     <h1>Job Application Form</h1>
     <form *ngIf="active" (ngSubmit)="onSubmit()" #applicantForm="ngForm">
@@ -119,7 +119,7 @@
             <div class="alert alert-danger" *ngIf="city.errors && city.errors.required">
                 City is required
             </div>
-            <div class="alert alert-danger" *ngIf="city.errors && adcitydress.errors.pattern">
+            <div class="alert alert-danger" *ngIf="city.errors && city.errors.pattern">
                 City is invalid
             </div>
         </div>
@@ -245,11 +245,6 @@
           ngControl="employertitle1"  
           #employertitle1="ngForm"
           pattern="/[^a-zA-Z]+/" >
-          <div [hidden]="employers[0].title.valid || employers[0].title.untouched">
-            <div class="alert alert-danger" *ngIf="employers[0].title.errors && employers[0].title.errors.pattern">
-                Previous Position Title is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -260,11 +255,6 @@
           ngControl="employerwage1"  
           #employerwage1="ngForm"
           pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
-          <div [hidden]="employers[0].wage.valid || employers[0].wage.untouched">
-            <div class="alert alert-danger" *ngIf="employers[0].wage.errors && employers[0].wage.errors.pattern">
-                Previous Wage is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -285,11 +275,6 @@
           ngControl="employername2"  
           #employername2="ngForm"
           pattern="/[^a-zA-Z]+/" >
-          <div [hidden]="employers[1].name.valid || employers[1].name.untouched">
-            <div class="alert alert-danger" *ngIf="employers[1].name.errors && employers[1].name.errors.pattern">
-                Previous Employer Name is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -300,11 +285,6 @@
           ngControl="employertitle2"  
           #employertitle2="ngForm"
           pattern="/[^a-zA-Z]+/" >
-          <div [hidden]="employers[1].title.valid || employers[1].title.untouched">
-            <div class="alert alert-danger" *ngIf="employers[1].title.errors && employers[1].title.errors.pattern">
-                Previous Position Title is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -315,11 +295,6 @@
           ngControl="employerwage2"  
           #employerwage2="ngForm"
           pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
-          <div [hidden]="employers[1].wage.valid || employers[1].wage.untouched">
-            <div class="alert alert-danger" *ngIf="employers[1].wage.errors && employers[1].wage.errors.pattern">
-                Previous Wage is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -340,11 +315,6 @@
           ngControl="employername3"  
           #employername3="ngForm"
           pattern="/[^a-zA-Z]+/" >
-          <div [hidden]="employers[2].name.valid || employers[2].name.untouched">
-            <div class="alert alert-danger" *ngIf="employers[2].name.errors && employers[2].name.errors.pattern">
-                Previous Employer Name is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -355,11 +325,6 @@
           ngControl="employertitle3" 
           #employertitle3="ngForm"
           pattern="/[^a-zA-Z]+/" >
-          <div [hidden]="employers[2].title.valid || employers[2].title.untouched">
-            <div class="alert alert-danger" *ngIf="employers[2].title.errors && employers[2].title.errors.pattern">
-                Previous Position Title is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -370,11 +335,6 @@
           ngControl="employerwage3"  
           #employerwage3="ngForm"
           pattern="^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$" >
-          <div [hidden]="employers[2].wage.valid || employers[2].wage.untouched">
-            <div class="alert alert-danger" *ngIf="employers[2].wage.errors && employers[2].wage.errors.pattern">
-                Previous Wage is invalid
-            </div>
-          </div>
       </div>
       
       <div class="form-group">
@@ -387,7 +347,7 @@
         </div>
       </div>
       
-      <div class="recaptcha"></div>      
+      <recaptcha-widget (verified)="captchaVerified($event)" [sitekey]="siteKey"></recaptcha-widget> 
       
       <button type="submit" class="btn btn-default" [disabled]="!applicantForm.form.valid">Submit</button>
 
