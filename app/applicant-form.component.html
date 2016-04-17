@@ -340,6 +340,8 @@
       
       <recaptcha-widget (verified)="captchaVerified($event)" [sitekey]="siteKey"></recaptcha-widget> 
       
+      <br />
+      
       <button type="submit" class="btn btn-default" [disabled]="!applicantForm.form.valid">Submit</button>
 
       <button type="button" class="btn btn-default" (click)="newApplicant()">Clear</button>
