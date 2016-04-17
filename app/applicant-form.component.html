@@ -11,7 +11,7 @@
           [(ngModel)]="applicant.firstname"
           ngControl="firstname"  
           #firstname="ngForm"
-          pattern="/[^a-zA-Z]+/" >
+          pattern="[a-zA-Z]+" >
         <div [hidden]="firstname.valid || firstname.untouched">
             <div class="alert alert-danger" *ngIf="firstname.errors && firstname.errors.required">
                 First Name is required
@@ -31,7 +31,7 @@
           [(ngModel)]="applicant.lastname"
           ngControl="lastname"  
           #lastname="ngForm"
-          pattern="/[^a-zA-Z]+/" >
+          pattern="[a-zA-Z]+" >
         <div [hidden]="lastname.valid || lastname.untouched">
             <div class="alert alert-danger" *ngIf="lastname.errors && lastname.errors.required">
                 Last Name is required
@@ -73,7 +73,7 @@
           [(ngModel)]="applicant.telephone"
           ngControl="telephone"  
           #telephone="ngForm"
-          pattern="/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)?\d{4}$/" >
+          pattern="^((([0-9]{3}))|([0-9]{3}))[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$" >
         <div [hidden]="telephone.valid || telephone.untouched">
             <div class="alert alert-danger" *ngIf="telephone.errors && telephone.errors.required">
                 Telephone is required
@@ -114,7 +114,7 @@
           [(ngModel)]="applicant.city"
           ngControl="city"  
           #city="ngForm"
-          pattern="/[^a-zA-Z]+/" >
+          pattern="[a-zA-Z]+" >
         <div [hidden]="city.valid || city.untouched">
             <div class="alert alert-danger" *ngIf="city.errors && city.errors.required">
                 City is required
@@ -187,18 +187,9 @@
           maxlength="30"
           [(ngModel)]="applicant.desiredposition"
           ngControl="desiredposition" 
-          #desiredposition="ngForm"
-          pattern="/[^a-zA-Z]+/" >
+          #desiredposition="ngForm" >
             <option *ngFor="#p of positions" [value]="p">{{p}}</option>
         </select>
-        <div [hidden]="desiredposition.valid || desiredposition.untouched">
-            <div class="alert alert-danger" *ngIf="desiredposition.errors && desiredposition.errors.required">
-                Desired Position is required
-            </div>
-            <div class="alert alert-danger" *ngIf="desiredposition.errors && desiredposition.errors.pattern">
-                Desired Position is invalid
-            </div>
-        </div>
       </div>
       
       <div class="form-group">
